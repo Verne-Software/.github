@@ -1,47 +1,42 @@
-# 🌊 Verne Software Nautilus
+# Nautilus by Verne Software
 
-**Enterprise-Grade Infrastructure & DevTools Ecosystem**
+**Sign-in and users for European SaaS teams.**
 
 [![Website](https://img.shields.io/badge/Website-vernesoft.com-blue?style=flat-square)](https://vernesoft.com)
-[![Rust](https://img.shields.io/badge/Engineered_in-Rust-black?style=flat-square&logo=rust)](#)
-[![Vue](https://img.shields.io/badge/Frontend-Vue_3_%7C_Nuxt_3-4FC08D?style=flat-square&logo=vuedotjs&logoColor=white)](#)
+[![Docs](https://img.shields.io/badge/Docs-docs.vernesoft.com-blue?style=flat-square)](https://docs.vernesoft.com)
 
-Engineered with memory-safe Rust and high-concurrency Golang engines, our architecture strips away traditional overhead. This bare-metal approach guarantees sub-millisecond latency and enterprise-grade reliability for your most critical workflows.
+Nautilus gives your product registration and login, two-factor sign-in, your users'
+organizations and roles, an audit log, and automatic deletion of inactive accounts on
+the retention period you set for the GDPR. Webhooks, scheduled jobs and Telegram
+sign-in are part of the same product, in one plan priced by monthly active users:
+Free up to 1,000, Pro €99, Advanced €199.
 
-## 🏗️ Our Engineering Philosophy
+## What it is built on
 
-At Verne Software, we build "Umbrella SaaS" infrastructure for developers. We believe in the **"Dumb pipes, smart endpoints"** principle. Our platform strictly separates the Control Plane from the Data Plane, ensuring that your business logic never competes for resources with our metering or routing layers.
+- **Sign-in and users** runs on [Ory Kratos](https://github.com/ory/kratos), unmodified.
+- **Webhooks** run on [Svix](https://github.com/svix/svix-webhooks), the open-source server.
+- **Scheduled jobs** run on our own scheduler, written in Rust.
+- Our own layer around them (the gateway, the dashboard, organizations and roles,
+  automatic deletion, the audit log) is Rust and Nuxt.
 
-* **Sub-Millisecond Edge:** 100% of API traffic hits our Global Edge gateway (Rust + Actix). Operating entirely in-memory (Redis), it handles atomic `DECR` quota metering and immediate request blocking in microseconds.
-* **True Isolation:** Multi-tenancy is enforced at the logical level with strict `tenant_id` routing and robust PostgreSQL row-level security.
-* **Decoupled Architecture:** The Core Platform (The Brain) handles provisioning, IAM, and asynchronous usage-based billing synchronization, keeping the heavy lifting away from the API edge.
+Servers are in France, at OVHcloud, with daily encrypted backups kept in a separate
+data centre. Verne Software is registered in Serbia. You can have your users exported
+with their password hashes on request.
 
-## 🚀 The Ecosystem (Data Planes)
+## SDKs
 
-Our SaaS engines are isolated, highly specialized microservices with zero direct public internet exposure. 
+| Language | Repository | Package |
+|:-|:-|:-|
+| Node.js | [vrn-sdk-node](https://github.com/Verne-Software/vrn-sdk-node) | `@verne-software/sdk` on npm |
+| PHP | [vrn-sdk-php](https://github.com/Verne-Software/vrn-sdk-php) | `vernesoft/sdk` on Packagist |
+| Python | [vrn-sdk-python](https://github.com/Verne-Software/vrn-sdk-python) | `vernesoft` on PyPI |
+| Rust | [nautilus-rs](https://github.com/Verne-Software/nautilus-rs) | `nautilus-rs` on crates.io |
 
-### Core Infrastructure
-* **Auth-as-a-Service (AaaS):** Identity management and secure authentication workflows powered by the Ory Ecosystem (Kratos, Hydra).
-* **Webhooks-as-a-Service (WaaS):** Reliable event dispatch and ingestion, backed by Svix and dedicated PostgreSQL queues.
-* **Cron-as-a-Service (CaaS):** Precision delayed and scheduled background job execution via Faktory Server.
-* **Logs-as-a-Service (LaaS):** *(Coming Soon)* Centralized telemetry and log aggregation via Grafana Loki.
+## Who answers
 
-### Specialized Services
-* **Encryption-as-a-Service (EaaS):** On-demand, zero-knowledge encryption executing inside secure processor enclaves. The provider has absolutely no access to the encrypted content. Built on highly optimized Rust cryptography modules, it ensures maximum data transmission security and exceptional encryption performance.
-* **Witty Support:** An intelligent, AI-driven support proxy. It seamlessly translates and refines client inquiries and operator responses in real-time. This enables a single technical support operator to efficiently assist clients across France, Germany, and the rest of Europe directly via Telegram, completely eliminating language barriers.
-
-## ⚙️ Infrastructure & DevOps
-
-We treat infrastructure as code and prioritize reliability and zero-downtime operations.
-
-* **Hosting & Network:** Deployed on high-performance bare-metal/VPS environments (NVMe, scalable vCores). We utilize Traefik as a reverse proxy for automated subdomain routing and Let's Encrypt SSL management.
-* **CI/CD Pipeline:** Fully automated via GitHub Actions. Rust binaries are compiled and packaged into ultra-lightweight Docker images (Alpine/Distroless). Deployments are executed via SSH with `docker compose pull` for seamless rolling updates.
-* **Resilience:** Automated 24h infrastructure snapshots, coupled with logical `pg_dump` backups encrypted and shipped to S3-compatible storage every 4 hours.
-
-## 🛡️ Founded on Systems Expertise
-
-Verne Software is built by [Max Zhuk](https://in.zhukmax.com/), a Senior Systems Architect and Rust evangelist with over 18 years of experience in IT. The platform's foundation is deeply rooted in the rigorous demands of low-latency environments, concurrent Actor-based architectures, and high-frequency data pipelines.
+Verne Software is [Max Zhuk](https://in.zhukmax.com/). Questions go to
+[support@vernesoft.com](mailto:support@vernesoft.com).
 
 ---
 
-**Explore our solutions and start building at [vernesoft.com](https://vernesoft.com).**
+[Create a free account](https://app.vernesoft.com/registration) · [Plans](https://vernesoft.com/pricing) · [Docs](https://docs.vernesoft.com)
